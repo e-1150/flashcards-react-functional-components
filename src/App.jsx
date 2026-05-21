@@ -71,6 +71,8 @@ export default function App() {
     [decks, currentDeckId],
   );
 
+  const currentCards = useMemo(() => currentDeck?.cards || [], [currentDeck]);
+
   const createDeck = useCallback((name) => {
     const deck = {
       id: Date.now(),
@@ -173,12 +175,12 @@ export default function App() {
       <CardForm onAdd={addCard} />
 
       <CardList
-        cards={currentDeck?.cards || []}
+        cards={currentCards}
         onDelete={deleteCard}
         onToggle={toggleLearned}
       />
 
-      <StudyMode cards={currentDeck?.cards || []} />
+      <StudyMode cards={currentCards} />
     </div>
   );
 }

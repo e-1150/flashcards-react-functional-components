@@ -1,4 +1,5 @@
 import { memo } from "react";
+import Card from "./Card";
 
 function CardList({ cards, onDelete, onToggle }) {
   return (
@@ -17,23 +18,12 @@ function CardList({ cards, onDelete, onToggle }) {
 
         <tbody>
           {cards.map((card) => (
-            <tr key={card.id}>
-              <td>{card.front}</td>
-
-              <td>{card.back}</td>
-
-              <td>
-                <input
-                  type="checkbox"
-                  checked={card.learned}
-                  onChange={() => onToggle(card.id)}
-                />
-              </td>
-
-              <td>
-                <button onClick={() => onDelete(card.id)}>Удалить</button>
-              </td>
-            </tr>
+            <Card
+              key={card.id}
+              card={card}
+              onDelete={onDelete}
+              onToggle={onToggle}
+            />
           ))}
         </tbody>
       </table>
